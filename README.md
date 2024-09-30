@@ -1,7 +1,8 @@
 # weather-info
 
 
-Code Overview
+Code Overview:
+
 The code retrieves weather information for a specific location using the OpenWeatherMap API and sends the information via email.
 
 Importing Required Libraries:
