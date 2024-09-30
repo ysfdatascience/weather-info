@@ -6,7 +6,7 @@ from datetime import datetime
 import json
 from send_message import send_email
 
-"""hava durumunun konrol edileceği yerin kordinatlarının GeoCoding API ile alınması"""
+"""Retrieving the coordinates of the location for which the weather will be checked using the GeoCoding API."""
 ##############################################################################################################
 
 with open("config.json") as file:
@@ -36,7 +36,7 @@ my_lon = geo_loc_data[0]["lon"]
 
 print(f"{my_loc} kordinatları lat: {my_lat}, lon: {my_lon}")
 
-"""havu durumu verilerinin API ile alınması ve info_text' e dönüştürülmesi"""
+"""Retrieving weather data via API and converting it to info_text."""
 ##############################################################################################################
 
 openweather_api_endpoint = "https://api.openweathermap.org/data/2.5/weather?"
@@ -53,12 +53,12 @@ weather_response = requests.get(url=openweather_api_endpoint, params=weather_par
 weather_response.raise_for_status()
 weather_data = weather_response.json()
 
-# timestamp lerin tarih-saat formatına çevrilmesi
+# Converting timestamps to date-time format.
 data_time = datetime.fromtimestamp(weather_data["dt"]).strftime("%d-%m-%Y %H:%M:%S")
 sunrise = datetime.fromtimestamp(weather_data["sys"]["sunrise"]).strftime("%H:%M:%S")
 sunset = datetime.fromtimestamp(weather_data["sys"]["sunset"]).strftime("%H:%M:%S")
 
-# info_text oluşturulması
+# creating info_text
 
 info_text = f"""{data_time} itibariyle {weather_data["name"]} bölgesindeki hava durumu: 
 - Sıcaklık: {weather_data["main"]["temp"]}°C
@@ -72,6 +72,6 @@ info_text = f"""{data_time} itibariyle {weather_data["name"]} bölgesindeki hava
 - Güneşin Doğuşu: {sunrise} UTC, Güneşin Batışı: {sunset} UTC """
 
 ##############################################################################################################
-"""smtplib ile mail gönderilmesi"""
+"""Sending email with smtplib"""
 
 send_email("ysfylmz_1218@hotmail.com", password=password, content=info_text)
