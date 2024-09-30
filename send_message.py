@@ -24,7 +24,7 @@ def send_email(reciever: str, password:str, content: str) -> None:
             smtp.starttls()
             smtp.login(SENDER, password=password) # sender hesabına giriş yapılması
             smtp.send_message(msg = msg)
-        print("e-posta gönderimi başarıyla yapıldı")
+        print("Email sent successfully.")
     except Exception as e:
-        print(f"e-posta gönderiminde hata oluştu: {e}")
+        print(f"An error occurred while sending the email: {e}")
         
