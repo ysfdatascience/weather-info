@@ -22,7 +22,7 @@ def send_email(reciever: str, password:str, content: str) -> None:
     try:
         with smtplib.SMTP(host = "smtp.gmail.com", port=587) as smtp:
             smtp.starttls()
-            smtp.login(SENDER, password=password) # sender hesabına giriş yapılması
+            smtp.login(SENDER, password=password)
             smtp.send_message(msg = msg)
         print("Email sent successfully.")
     except Exception as e:
