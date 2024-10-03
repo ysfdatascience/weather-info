@@ -1,11 +1,11 @@
 import requests
 import sys
 from pprint import pp
-sys.stdout.reconfigure(encoding = "utf-8")
 from datetime import datetime
 import json
 from send_message import send_email
 
+# sys.stdout.reconfigure(encoding = "utf-8")
 """Retrieving the coordinates of the location for which the weather will be checked using the GeoCoding API."""
 ##############################################################################################################
 
